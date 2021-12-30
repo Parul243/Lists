@@ -1,0 +1,126 @@
+package Lists;
+
+public class SinglyLinkedLists {
+    public Node head;
+    static class Node
+    {
+        int data;
+        Node next; //reference to next node
+
+        Node(int data) {
+            this.data = data;
+            next = null;
+        }//creating node for first time so no 2nd parameter
+
+    }
+    public SinglyLinkedLists()
+    {
+        this.head=null;
+    }
+    public Node append(int data)
+    {
+        //create a new node
+        Node newNode= new Node(data);
+        if (head== null)
+        {
+            head=newNode;
+        }
+        else
+        {
+            Node temp=head;
+            while(temp.next != null)
+            {
+                temp=temp.next;
+            }
+            temp.next=newNode;
+
+        }
+        return head;
+    }
+    public void printLists()
+    {
+        Node temp=head;
+        if(head != null)
+        {
+            while (temp != null)
+            {
+                System.out.println(temp.data+" ");
+                temp = temp.next;
+            }
+        }
+        //System.out.println();
+    }
+    public Node deleteFromEnd() throws Exception
+    {
+        if(head== null){
+            throw new Exception("List is empty");
+        }
+        if(head.next == null)
+        {
+            head=null;
+        }
+        else{
+            Node temp=head;
+            while(temp.next.next != null){
+                temp=temp.next;
+            }
+            temp.next=null;
+        }
+        return head;
+    }
+    public boolean isEmpty(){
+        return head== null;
+    }
+    public Node search(int data) throws Exception
+    {
+        if(head== null){
+            throw new Exception("List is empty");
+        }
+        else
+        {
+            Node temp=head;
+            while(temp.next != null)
+            {
+                if(temp.data== data){
+                    System.out.println("Element found");
+                }
+                temp=temp.next;
+            }
+
+        }
+        return head;
+
+    }
+    public void insertAtPos(int data, int pos)
+    {
+
+        Node newNode= new Node(data);
+        if (pos< 1)
+        {
+            System.out.println("Invalid");
+        }
+        else if(pos== 1){
+            newNode.next= head;
+        }
+        else
+        {
+            Node temp=head;
+            Node previous=null;
+            int i=1;
+            while(i < pos)
+            {
+                previous=temp;
+                temp=temp.next;
+                i++;
+            }
+            newNode.next= previous;
+            temp.next=newNode;
+
+        }
+    }
+
+
+}
+
+
+
